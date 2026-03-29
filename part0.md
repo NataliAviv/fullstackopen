@@ -56,3 +56,57 @@ sequenceDiagram
     deactivate Server
 
     Browser->>Browser: Display updated notes list
+```
+
+---
+
+## 0.5: Single page app diagram
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate Server
+    Server-->>Browser: HTML document
+    deactivate Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate Server
+    Server-->>Browser: CSS file
+    deactivate Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate Server
+    Server-->>Browser: JavaScript file
+    deactivate Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate Server
+    Server-->>Browser: JSON with notes
+    deactivate Server
+
+    Browser->>Browser: JavaScript renders notes on page
+```
+
+---
+
+## 0.6: New note in SPA diagram
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Browser: User writes note
+    Browser->>Browser: User clicks submit
+
+    Browser->>Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate Server
+    Server->>Server: Save note
+    Server-->>Browser: JSON response (status OK)
+    deactivate Server
+
+    Browser->>Browser: Update notes list without reloading page
+```
